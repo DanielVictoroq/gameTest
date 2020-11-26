@@ -3,4 +3,6 @@ require_once('jogos.php');
 
 $jogos = new Jogos;
 
-var_dump($jogos->home());
+$jogos->setQtdDezenas(8);
+
+echo $jogos->html();
