@@ -1,5 +1,4 @@
 <?php
-
 class Jogos {
     private $qtdDezenas = [6,7,8,9,10];
     private $resultado;
@@ -82,16 +81,20 @@ class Jogos {
         $qtdDezenas = $this->getQtdDezenas();
         $html = '<h4 style="text-align:center">Tabela Jogos </h4><table style="margin:0 auto; border: 1px solid black; border-collapse: collapse;"> <thead>';
         $html .= '</thead> <tbody>';
+        $this->sortResultados();
+        $resultados = $this->getResultado();
         foreach($jogos as $key => $item){
             $html .= '<tr>';
             foreach($item as $k => $number){
-                $html .= '<td style=" border: 1px solid black; padding:5px">'.$number.'</td>';
+                if (in_array($number, $resultados)) {
+                    $html .= '<td style=" border: 1px solid black; padding:5px; color:blue">'.$number.'</td>';
+                }else{
+                    $html .= '<td style=" border: 1px solid black; padding:5px">'.$number.'</td>';
+                }
             }
             $html .= '</tr>';
         }
         $html .= '</tbody> </table>';
-        $this->sortResultados();
-
         $html .= '<p style="text-align:center"> Resultado: ';
         foreach($this->getResultado() as $key => $item){
             if(count($this->getResultado())-1 == $key) $html .= '<span>'.$item.'</span>';
